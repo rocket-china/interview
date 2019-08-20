@@ -1,0 +1,54 @@
+## 模块化
+
+抽离公共代码， 隔离作用域，避免命名冲突
+
+- IIFE 自执行函数 闭包， 在一个单独的函数作用域中执行代码，避免命名冲突
+- AMD  
+  - 浏览器端
+    - RequireJS
+  - 依赖必须提前声明好
+  - 模块加载异步，指定回调函数
+  - 引入 `require([modules], function (modules) {})`
+  - 定义 `define(function () { return module; })`
+  - 有依赖 `define([modules], function (modules) { return module; })`
+- CMD seaJS 支持动态引入依赖文件
+  - 浏览器端
+    - seaJS
+  - 整合了CommonJS 和 AMD 的特点
+  - 模块使用时在声明
+  - 模块加载是异步的，模块使用时在加载
+  - 引入 `require('module')`
+  - 异步引入 `require.async('module', callback)`
+  - 定义和暴露  `define(function(require, exports, module){ exports; module.exports; })`
+- CommonJS 
+  - 服务端
+    - nodeJS 自带模块化
+  - 浏览器端
+    - webpack
+    - browserfy
+  - 模块记载同步，资源加载完在执行
+  - 每个文件就是一个模块
+  - 服务端 模块加载是运行时同步加载
+  - 浏览器端 模块加载是提前打包处理
+  - 引入 `require('module')`
+  - 暴露 
+    - `exports.name = module`
+    - `module.exports = module`
+    - module.exports 就是对外的接口
+- UMD 兼容 AMD, CommonJS
+- ES 6 Modules
+  - 服务端与浏览器端通用
+  - 浏览器端需要编译
+    - es6 -> es5
+    - Browserify 编译
+  - 依赖提声明好，import在顶层
+  - 引入 `import`
+  - 暴露 `export default` `export`
+  - 输出值
+    - es6 输出的是一个值的引用
+      - 模块动态引用，不会缓存，模块里的变量绑定所在的模块
+    - commonjs 输出的是一个值得拷贝
+      - 模块可以多次加载，但是只会在第一次加载的时候运行一次，然后缓存运行结果，如果想要模块再次运行要清除缓存
+  - 加载方式
+    - commonjs 运行时加载，加载的是一个对象 `module.exports`，只有运行时才会生成 
+    - es6 模块不是对象，对外接口只是一种静态定义，在代码静态阶段就会生成
