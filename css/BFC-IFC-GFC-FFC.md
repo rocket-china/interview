@@ -68,4 +68,52 @@
   - Flex Formating Contexts, 自适应格式化上下文
   - `display: flex | inline-flex`
   - 伸缩容器和伸缩项目组成，定义了其内的伸缩布局
-  - [ ] 使用
+  - [x] 使用
+    - container 
+      - flex-direction 主轴方向
+        - row default
+        - row-reverse
+        - column
+        - column-reverse
+      - flex-wrap 控制 flex container 中元素的排列方式
+        - nowrap default
+        - wrap
+        - wrap-reverse 
+      - flex-flow: <flex-direction> <flex-wrap>
+      - justify-content 指定主轴线的排列方式
+        - flex-start default
+        - flex-end
+        - center
+        - space-around
+        - space-between
+      - align-items 交叉轴对齐方式
+        - flex-start
+        - flex-end
+        - center
+        - baseline 文本基线
+        - stretch default
+      - align-content flex container 交叉轴未被填满且元素为多行时生效，控制交叉轴方向
+        - flex-start
+        - flex-end
+        - center
+        - space-between
+        - space-around
+        - stretch default
+      - **所有的 `column-*` 属性在 flex container 都不会有效果**
+      - **`::first-line` `::first-letter` 伪类在 flex container 上不会被应用** 
+  - item
+    - order 权重 小 -> 大
+    - flex-grow 当 flex-container 存在剩余空间时，flex-grow 来确定 flex-item 的伸缩比 
+    - flex-shrink 确认收缩比例
+    - flex-basis 初始长度
+      - auto
+      - width
+    - flex  <flex-grow>  <flex-shrink> <flex-basis>
+    - align-self 覆盖这个 flex-item 在交叉轴的排列方式
+      - auto
+      - flex-start
+      - flex-end
+      - center
+      - baseline
+      - stretch
+  - **`float` `clear`和 `vertical-align` 在 flex-item 上都不会起作用， 也不会使其脱离文档流**
