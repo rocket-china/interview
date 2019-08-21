@@ -1,0 +1,19 @@
+- display: none
+  - reflow、repaint, 不会渲染，不占据空间，会改变 DOM 树结构
+  - 无法监听
+  - 性能较差
+  - 不会继承
+  - 不支持 transition
+
+- visibility: hidden
+  - repaint 脱离文档流， 元素会渲染但会被隐藏， 占据空间
+  - 无法监听
+  - repaint 性能较好
+  - 会被继承，子元素可以通过 `visibility: visible` 来显示
+  - transition 立即显示，延时隐藏
+- opacity: 0
+  - 元素隐藏，占据空间
+  - 可以监听
+  - 提升为合成层，不会触发 repaint，性能较高
+  - 会被继承，但子元素不能通过更改 opacity 来显示
+  - transition 可以延时显示和隐藏

@@ -1,0 +1,71 @@
+- BFC 
+  - Block Formating Contexts, 块级格式化上下文 
+  - 一个隔离的渲染区域
+
+- IFC
+  - Inline Formating Contexts, 内联格式化上下文
+  - 高度有其内包含的最高的实际高度来计算，不受垂直方向的 padding/margin 影响
+  - line-box 一般会紧贴 IFC 左右，但是浮动元素会位于 IFC 和 inline-box 之间， 导致 line-box 宽度减少，同一个 IFC 内的 inline-box 高度肯能不一样
+  - IFC 内不可能存在 block-box，当插入的时候会产生两个 IFC， 每个 IFC 对外表现和 block-box 相同
+  - 设置 display: inline-block 会产生 IFC, 可以通过一个子元素撑开 IFC 高度，设置 `vertical-align: center` 使得其他元素垂直居中，`text-align: center` 水平居中
+
+- GFC
+  - GrideLayout Formating Contexts, 网格布局格式化上下文
+  - `display: grid |inline-grid`
+  - 可以在网格空间内定义网格行和网格列，以及为每一个网格项定义位置和空间
+  - 更丰富的属性控制行列，控制对齐以及更加精细的渲染语义和控制
+  - [x] 使用 
+    - container
+      - display: grid;
+      - [subgrid](https://www.w3.org/TR/css-grid-2/#subgrids)
+      - grid-template[-rows/columns]
+      - grid-template-areas
+        - <grid-area-name> 网格项的  `grid-area`
+        - . : 空单元格
+        - none: 不定义单元格
+        - `grid-template-area: "header header header header" "main main . sidebar" "footer footer footer footer"`
+        - `grid-[column | row]-gap` 网格线宽度
+        - `justify-items` 行轴线对齐方式
+          - start
+          - end
+          - center
+          - stretch default 填满
+        - `align-items` 列轴线对齐方式
+          - start
+          - end
+          - center
+          - stretch default 
+        - `place-items` 简写 `<align-items> <justify-items>` 
+        - `justify-content` 当网格元素空间小于网格容器时，行轴线对齐方式
+          - start
+          - end
+          - center
+          - stretch
+          - space-around 每个网格设置一个均匀的空间，左右两端设置一半空间
+          - space-between 左右不留空间
+          - space-evenly 左右留均匀的空间
+        - `align-content` ...列对齐方式
+          - start
+          - end
+          - center
+          - stretch
+          - space-around
+          - space-between
+          - space-evenly 
+        - `space-content` `<align-content> <justify-content>` 
+        - `grid-auto-columns | rows`  隐式轨迹，当单元格项多余单元格或单元格项位于显示单元格外就会创建隐式轨迹
+        - `grid-auto-flow` 没有明确放置在单元格上的布局方式
+          - row
+          - column
+          - dense 出现较小单元格时，尝试填充单元格中较早的空缺
+
+    - child
+      - `grid-column-start | end / grid-row-start | end / grid-column | row / grid-area : <name> | ...`
+      - `justify-self` 沿行自对齐方式
+      - `align-self` 沿列自对齐方式
+      - `place-self`
+- FFC
+  - Flex Formating Contexts, 自适应格式化上下文
+  - `display: flex | inline-flex`
+  - 伸缩容器和伸缩项目组成，定义了其内的伸缩布局
+  - [ ] 使用
