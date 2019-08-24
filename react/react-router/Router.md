@@ -12,6 +12,7 @@
 
 - <StaticRouter>
   - a `<Router>` never change location
+  - server render
 
 #### history: object
 
