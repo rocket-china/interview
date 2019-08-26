@@ -1,0 +1,18 @@
+- Service Worker
+- Memory Cache
+- Disk Cache
+- Push Cache
+  - anything can use the push cache
+    - `fetch`
+    - `HTMLHttpRequest`
+    - `<link rel="stylesheet" href="..." />`
+    - `<script src="..." />`
+    - `<frame src="..." />`
+  - push no-cache and no-store resource
+  - connection closes, push cache closes
+  - multiple pages can use the same http/2 connection
+  - requests with credentials use a separate connection
+  - items in the push cache can only be used once
+  - the browser can abort pushed items if it already has them
+  - you can push items for other origins
+  - https://jakearchibald.com/2017/h2-push-tougher-than-i-thought/
